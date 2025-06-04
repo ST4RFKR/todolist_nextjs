@@ -1,0 +1,44 @@
+{
+  "Header": {
+    "logo": "Список завдань",
+    "language": "Мова",
+    "theme": {
+      "light": "Світла",
+      "dark": "Темна",
+      "system": "Системна"
+    },
+    "logOut": "Вийти"
+  },
+  "HomePage": {
+    "title": "Привіт світ!",
+    "logOut": "Вийти"
+  },
+  "logIn": {
+    "title": "Вхід до системи",
+    "description": "Введіть ваші дані для входу до акаунту",
+    "testData": {
+      "title": "Тестові дані:",
+      "login": "Логін: free@samuraijs.com",
+      "password": "Пароль: free"
+    },
+    "emailLabel": "Email",
+    "emailPlaceholder": "Введіть ваш email",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "Введіть ваш пароль",
+    "submit": "Увійти",
+    "noAccount": "Немає акаунту?",
+    "register": "Зареєструватися",
+    "rememberMe": "Запам'ятати мене"
+  },
+  "mainPage": {
+    "createForm": {
+    "createTodolist": "Створити список справ",
+    "createTask": "Створити завдання"
+  },
+    "filterButtons": {
+      "all": "Всі",
+      "active": "Активні",
+      "completed": "Виконані"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "Header": {
+    "logo": "Список задач",
+    "language": "Язык",
+    "theme": {
+      "light": "Светлая",
+      "dark": "Тёмная",
+      "system": "Системная"
+    },
+    "logOut": "Выйти"
+  },
+  "HomePage": {
+    "title": "Привет, мир!",
+    "logOut": "Выйти"
+  },
+  "logIn": {
+    "title": "Вход в систему",
+    "description": "Введите ваши данные для входа в аккаунт",
+    "testData": {
+      "title": "Тестовые данные:",
+      "login": "Логин: free@samuraijs.com",
+      "password": "Пароль: free"
+    },
+    "emailLabel": "Email",
+    "emailPlaceholder": "Введите ваш email",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "submit": "Войти",
+    "noAccount": "Нет аккаунта?",
+    "register": "Зарегистрироваться",
+    "rememberMe": "Запомнить меня"
+  },
+  "mainPage": {
+    "createForm": {
+  "createTodolist": "Создать список дел",
+  "createTask": "Создать задачу"
+},
+
+    "filterButtons": {
+      "all": "Все",
+      "active": "Активные",
+      "completed": "Выполненные"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "Header": {
+    "logo": "Task List",
+    "language": "Language",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "logOut": "Log out"
+  },
+  "HomePage": {
+    "title": "Hello world!",
+    "logOut": "Log out"
+  },
+  "logIn": {
+    "title": "Sign In",
+    "description": "Enter your credentials to sign in to your account",
+    "testData": {
+      "title": "Test credentials:",
+      "login": "Login: free@samuraijs.com",
+      "password": "Password: free"
+    },
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "submit": "Sign In",
+    "noAccount": "No account?",
+    "register": "Register",
+    "rememberMe": "Remember me"
+  },
+  "mainPage": {
+    "createForm": {
+      "createTodolist": "Create todolist",
+      "createTask": "Create task"
+    },
+    "filterButtons": {
+      "all": "All",
+      "active": "Active",
+      "completed": "Completed"
+    }
+  }
+}
