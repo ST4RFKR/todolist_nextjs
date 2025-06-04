@@ -7,8 +7,12 @@ import { GripHorizontal, X } from 'lucide-react'
 import React from 'react'
 type Props = {
   todolist: Todolist
+  dragHandleProps?: {
+    attributes: React.HTMLAttributes<HTMLElement>;
+    listeners?: React.DOMAttributes<HTMLElement>;
+  };
 }
-export const TodolistTitle = ({ todolist }: Props) => {
+export const TodolistTitle = ({ todolist, dragHandleProps }: Props) => {
   const [deleteTodolist] = useDeleteTodolistMutation();
   const [updateTitle] = useUpdateTodolistTitleMutation();
 
@@ -23,11 +27,21 @@ export const TodolistTitle = ({ todolist }: Props) => {
     <div className="flex items-center justify-between">
       <EditableSpan value={todolist.title} onChange={title => handleUpdateTodolistTitle(title)} />
       <div className='flex items-center gap-2'>
-        <Button onClick={handleDeleteTodolist} className='cursor-pointer'>
+        <Button
+          className='cursor-grab active:cursor-grabbing' onClick={handleDeleteTodolist}>
           <X />
         </Button>
-        <Button className='cursor-pointer' variant={'ghost'}><GripHorizontal /></Button>
-
+        {dragHandleProps && (
+          <Button
+            {...dragHandleProps.listeners}
+            {...dragHandleProps.attributes}
+            className='cursor-grab active:cursor-grabbing'
+            variant="ghost"
+            size="icon"
+          >
+            <GripHorizontal size={16} />
+          </Button>
+        )}
       </div>
     </div>
   )

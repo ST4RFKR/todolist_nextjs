@@ -41,10 +41,42 @@ transformResponse: (todolists: Todolist[]): DomainTodolist[] =>
       body: { title }
     }),
    }),
+
+reorderTodolist: build.mutation<void, { todolistId: string; putAfterItemId: string | null }>({
+  query: ({ todolistId, putAfterItemId }) => ({
+    url: `todo-lists/${todolistId}/reorder`,
+    method: 'PUT',
+    body: { putAfterItemId },
+  }),
+  // Оптимистичное обновление
+  onQueryStarted({ todolistId, putAfterItemId }, { dispatch, queryFulfilled }) {
+    const patchResult = dispatch(
+      todolistApi.util.updateQueryData('getTodolists', undefined, draft => {
+        const movedItemIndex = draft.findIndex(t => t.id === todolistId);
+        if (movedItemIndex === -1) return;
+        
+        const movedItem = draft[movedItemIndex];
+        draft.splice(movedItemIndex, 1);
+        
+        if (putAfterItemId === null) {
+          draft.unshift(movedItem);
+        } else {
+          const targetIndex = draft.findIndex(t => t.id === putAfterItemId);
+          if (targetIndex !== -1) {
+            draft.splice(targetIndex + 1, 0, movedItem);
+          }
+        }
+      })
+    );
+    
+    queryFulfilled.catch(patchResult.undo);
+  },
+}),
+   
   
   }),
   
   
 });
 
-export const  { useGetTodolistsQuery, useCreateTodolistMutation, useUpdateTodolistTitleMutation, useDeleteTodolistMutation } = todolistApi;
+export const  { useGetTodolistsQuery, useCreateTodolistMutation, useUpdateTodolistTitleMutation, useDeleteTodolistMutation , useReorderTodolistMutation} = todolistApi;

@@ -8,10 +8,14 @@ import { useCreateTaskMutation } from '../../api/task-api';
 import { DomainTodolist } from '../../lib/types';
 
 interface Props {
-  todolist: DomainTodolist
+  todolist: DomainTodolist,
+  dragHandleProps?: {
+    attributes: React.HTMLAttributes<HTMLElement>;
+    listeners?: React.DOMAttributes<HTMLElement>;
+  };
 }
 
-export const TodolistItem = ({ todolist }: Props) => {
+export const TodolistItem = ({ todolist, dragHandleProps }: Props) => {
   const t = useTranslations('mainPage');
   const [createTask, { isLoading }] = useCreateTaskMutation();
   const addTask = (title: string) => {
@@ -22,7 +26,7 @@ export const TodolistItem = ({ todolist }: Props) => {
   }
   return (
     <>
-      <TodolistTitle todolist={todolist} />
+      <TodolistTitle todolist={todolist} dragHandleProps={dragHandleProps} />
       <CreateItemForm disabled={isLoading} create={title => addTask(title)} placeholder={t("createForm.createTask")} />
       <Tasks todolist={todolist} />
       <FilterButtons todolist={todolist} />
