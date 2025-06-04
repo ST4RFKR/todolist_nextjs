@@ -20,7 +20,6 @@ export const TaskItem = ({ task, todolist }: Props) => {
   const [updateTask] = useUpdateTaskMutation()
   const isTaskCompleted = task.status === TaskStatus.Completed
 
-  console.log(isTaskCompleted);
 
 
   const deleteTaskHandler = (taskId: string) => {
@@ -62,7 +61,7 @@ export const TaskItem = ({ task, todolist }: Props) => {
         checked={isTaskCompleted}
         onCheckedChange={updateTaskStatus}
       />
-      <EditableSpan className={cn(task.status === TaskStatus.Completed && 'line-through')} value={task.title} onChange={title => updateTaskTitle(title)} />
+      <EditableSpan className={cn(task.status === TaskStatus.Completed && 'line-through text-gray-400')} value={task.title} onChange={title => updateTaskTitle(title)} />
       <Button onClick={() => deleteTaskHandler(task.id)} disabled={isLoading} size='icon'><X /></Button>
     </div>
 

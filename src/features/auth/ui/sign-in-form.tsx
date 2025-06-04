@@ -33,8 +33,9 @@ export const SignInForm = () => {
   const t = useTranslations('logIn');
 
   const router = useRouter();
-  const [login] = useLoginMutation();
+  const [login, { isError }] = useLoginMutation();
 
+  console.log(isError);
 
 
   const {
