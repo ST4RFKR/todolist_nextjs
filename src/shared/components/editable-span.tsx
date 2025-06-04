@@ -2,11 +2,12 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Input } from './ui/input';
 type Props = {
+  className?: string
   value: string
   onChange: (title: string) => void
   disabled?: boolean
 }
-export const EditableSpan = ({ value, onChange, disabled, }: Props) => {
+export const EditableSpan = ({ value, onChange, disabled, className }: Props) => {
   const [title, setTitle] = useState(value)
   const [isEditMode, setIsEditMode] = useState(false)
 
@@ -31,7 +32,7 @@ export const EditableSpan = ({ value, onChange, disabled, }: Props) => {
         onBlur={turnOffEditMode}
         autoFocus
         type="text" />}
-      <span onDoubleClick={turnOnEditMode}>{value}</span>
+      <span className={className} onDoubleClick={turnOnEditMode}>{value}</span>
     </>
   );
 };

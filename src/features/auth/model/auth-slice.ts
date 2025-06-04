@@ -1,11 +1,12 @@
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, isFulfilled, isPending, isRejected, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   isAuthenticated: boolean;
   token: string | null;
   userId: number | null;
   isInitialized: boolean;
+  status: "idle" | "loading" | "succeeded" | "failed"
 }
 
 const initialState: AuthState = {
@@ -13,6 +14,8 @@ const initialState: AuthState = {
   token: null,
   userId: null,
   isInitialized: false,
+  status: "idle",
+  
 };
 
 export const authSlice = createSlice({
@@ -32,6 +35,18 @@ export const authSlice = createSlice({
     setInitialized: (state) => {
       state.isInitialized = true;
     },
+  },
+   extraReducers: (builder) => {
+    builder
+      .addMatcher(isPending, (state) => {
+        state.status = "loading"
+      })
+      .addMatcher(isFulfilled, (state) => {
+        state.status = "succeeded"
+      })
+      .addMatcher(isRejected, (state) => {
+        state.status = "failed"
+      })
   },
 });
 

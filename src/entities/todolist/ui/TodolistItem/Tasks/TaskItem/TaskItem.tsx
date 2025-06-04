@@ -5,6 +5,7 @@ import { EditableSpan } from '@/shared/components/editable-span';
 import { Button } from '@/shared/components/ui';
 import { Checkbox } from '@/shared/components/ui/checkbox';
 import { TaskStatus } from '@/shared/lib/enums';
+import { cn } from '@/shared/lib/utils';
 import { X } from 'lucide-react';
 import React from 'react';
 
@@ -61,7 +62,7 @@ export const TaskItem = ({ task, todolist }: Props) => {
         checked={isTaskCompleted}
         onCheckedChange={updateTaskStatus}
       />
-      <EditableSpan value={task.title} onChange={title => updateTaskTitle(title)} />
+      <EditableSpan className={cn(task.status === TaskStatus.Completed && 'line-through')} value={task.title} onChange={title => updateTaskTitle(title)} />
       <Button onClick={() => deleteTaskHandler(task.id)} disabled={isLoading} size='icon'><X /></Button>
     </div>
 

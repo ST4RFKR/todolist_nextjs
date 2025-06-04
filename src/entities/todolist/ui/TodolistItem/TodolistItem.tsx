@@ -5,10 +5,10 @@ import { Tasks } from './Tasks/Tasks';
 import { FilterButtons } from './FilterButtons/FilterButtons';
 import { useTranslations } from 'next-intl';
 import { useCreateTaskMutation } from '../../api/task-api';
-import { Todolist } from '../../api/todolistsApi.types';
+import { DomainTodolist } from '../../lib/types';
 
 interface Props {
-  todolist: Todolist
+  todolist: DomainTodolist
 }
 
 export const TodolistItem = ({ todolist }: Props) => {
@@ -25,7 +25,7 @@ export const TodolistItem = ({ todolist }: Props) => {
       <TodolistTitle todolist={todolist} />
       <CreateItemForm disabled={isLoading} create={title => addTask(title)} placeholder={t("createForm.createTask")} />
       <Tasks todolist={todolist} />
-      <FilterButtons />
+      <FilterButtons todolist={todolist} />
     </>
   );
 };
