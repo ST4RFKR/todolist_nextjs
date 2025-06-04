@@ -11,7 +11,7 @@ import {
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
 import { Info } from 'lucide-react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Controller, useForm } from 'react-hook-form';
@@ -20,7 +20,7 @@ import { useRouter } from 'next/navigation';
 import { useLoginMutation } from '../api/auth-api';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { loginSchema } from '../sign-in-schema';
-import { useAppSelector } from '@/shared/hooks/hooks';
+
 
 type Inputs = {
   email: string;

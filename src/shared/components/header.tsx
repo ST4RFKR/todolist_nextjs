@@ -26,7 +26,6 @@ export const Header = ({ className }: Props) => {
       router.push('/sign-in');
     });
   }
-  const isLoggedIn = true;
   const t = useTranslations('Header');
   return (
     <header className={cn('flex items-center justify-between p-4', className)}>

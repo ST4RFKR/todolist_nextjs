@@ -1,17 +1,7 @@
 import { baseApi } from '@/shared/lib/baseApi';
 import { logout, setCredentials } from '../model/auth-slice';
+import { BaseResponse } from '@/shared/types/types';
 
-export type FieldError = {
-  error: string;
-  field: string;
-};
-
-export type BaseResponse<T = {}> = {
-  data: T;
-  resultCode: number;
-  messages: string[];
-  fieldsErrors: FieldError[];
-};
 export type LoginArgs = {
   email: string;
   password: string;
@@ -74,6 +64,7 @@ export const authApi = baseApi.injectEndpoints({
           await queryFulfilled;
         } catch (error) {
           // Игнорируем ошибки logout
+          console.error('Logout failed:', error);
         }
       },
     }),

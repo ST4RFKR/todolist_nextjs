@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <DndContext>
       <div className='flex items-center w-[350px] p-2'>
-        <CreateItemForm disabled={isLoading} create={title => createTodolist({ title })} placeholder={t("createForm.createTodolist")} />
+        <CreateItemForm disabled={isLoading} create={title => createTodolist(title)} placeholder={t("createForm.createTodolist")} />
       </div>
       <Todolist />
     </DndContext>);

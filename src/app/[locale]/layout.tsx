@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Providers } from '@/shared/lib/providers/providers';
 import { Header } from '@/shared/components/header';
-import NextTopLoader from 'nextjs-toploader';
+
 import { TopLoader } from '@/shared/components/top-loader';
 
 const geistSans = Geist({

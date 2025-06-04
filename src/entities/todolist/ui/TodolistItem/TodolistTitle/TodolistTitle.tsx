@@ -13,11 +13,11 @@ export const TodolistTitle = ({ todolist }: Props) => {
   const [updateTitle] = useUpdateTodolistTitleMutation();
 
   const handleDeleteTodolist = () => {
-    deleteTodolist({ todolistId: todolist.id })
+    deleteTodolist(todolist.id)
   }
   const handleUpdateTodolistTitle = (title: string) => {
     if (title === todolist.title) return
-    updateTitle({ todolistId: todolist.id, title })
+    updateTitle({ id: todolist.id, title })
   }
   return (
     <div className="flex items-center justify-between">

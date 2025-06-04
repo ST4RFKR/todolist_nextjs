@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     ? localStorage.getItem('token') || getCookieValue('authToken')
     : null;
 
-  const { data, error, isLoading } = useMeQuery(undefined, {
+  const { data, isLoading } = useMeQuery(undefined, {
     skip: !token,
   });
 
