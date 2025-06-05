@@ -7,8 +7,6 @@ import { useTranslations } from 'next-intl';
 import { useCreateTaskMutation } from '../../api/task-api';
 import { DomainTodolist } from '../../lib/types';
 import toast from 'react-hot-toast';
-import { BaseResponse } from '@/shared/types/types';
-import { DomainTask } from '../../api/tasksApi.types';
 
 interface Props {
   todolist: DomainTodolist;
