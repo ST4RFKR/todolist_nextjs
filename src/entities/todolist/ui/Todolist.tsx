@@ -5,7 +5,6 @@ import { TodolistItem } from './TodolistItem/TodolistItem';
 import { DomainTodolist } from '../lib/types';
 import { cn } from '@/shared/lib/utils';
 
-
 interface TodolistProps {
   todolist: DomainTodolist;
   className?: string;

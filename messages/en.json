@@ -39,6 +39,14 @@
       "all": "All",
       "active": "Active",
       "completed": "Completed"
-    }
+    },
+    "createDate": "Create date : ",
+    "pryority": {
+      "low": "Low",
+      "medium": "Middle",
+      "high": "High"
+    },
+    "noTasks": "No tasks",
+    "fieldRequired": "Field is required"
   }
 }

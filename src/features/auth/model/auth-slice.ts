@@ -1,4 +1,3 @@
-
 import { createSlice, isFulfilled, isPending, isRejected, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
@@ -6,7 +5,8 @@ interface AuthState {
   token: string | null;
   userId: number | null;
   isInitialized: boolean;
-  status: "idle" | "loading" | "succeeded" | "failed"
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: null | string;
 }
 
 const initialState: AuthState = {
@@ -14,14 +14,14 @@ const initialState: AuthState = {
   token: null,
   userId: null,
   isInitialized: false,
-  status: "idle",
-  
+  status: 'idle',
+  error: null,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
+  reducers: (create) => ({
     setCredentials: (state, action: PayloadAction<{ token: string; userId: number }>) => {
       state.token = action.payload.token;
       state.userId = action.payload.userId;
@@ -35,18 +35,21 @@ export const authSlice = createSlice({
     setInitialized: (state) => {
       state.isInitialized = true;
     },
-  },
-   extraReducers: (builder) => {
+    setAppErrorAC: create.reducer<{ error: string | null }>((state, action) => {
+      state.error = action.payload.error;
+    }),
+  }),
+  extraReducers: (builder) => {
     builder
       .addMatcher(isPending, (state) => {
-        state.status = "loading"
+        state.status = 'loading';
       })
       .addMatcher(isFulfilled, (state) => {
-        state.status = "succeeded"
+        state.status = 'succeeded';
       })
       .addMatcher(isRejected, (state) => {
-        state.status = "failed"
-      })
+        state.status = 'failed';
+      });
   },
 });
 

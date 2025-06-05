@@ -32,13 +32,21 @@
   },
   "mainPage": {
     "createForm": {
-    "createTodolist": "Створити список справ",
-    "createTask": "Створити завдання"
-  },
+      "createTodolist": "Створити список справ",
+      "createTask": "Створити завдання"
+    },
     "filterButtons": {
       "all": "Всі",
       "active": "Активні",
       "completed": "Виконані"
-    }
+    },
+    "createDate": "Дата створення : ",
+    "pryority": {
+      "low": "Низький",
+      "medium": "Середній",
+      "high": "Високий"
+    },
+    "noTasks": "Немає завдань",
+    "fieldRequired": "Поле обов'язкове для заповнення"
   }
 }

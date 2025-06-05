@@ -18,25 +18,23 @@ import { Controller, useForm } from 'react-hook-form';
 
 import { useRouter } from 'next/navigation';
 import { useLoginMutation } from '../api/auth-api';
-import { zodResolver } from '@hookform/resolvers/zod'
+import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../sign-in-schema';
-
+import toast from 'react-hot-toast';
+import { BaseResponse } from '@/shared/types/types';
 
 type Inputs = {
   email: string;
   password: string;
   rememberMe?: boolean;
-  captcha?: string
+  captcha?: string;
 };
 
 export const SignInForm = () => {
   const t = useTranslations('logIn');
 
   const router = useRouter();
-  const [login, { isError }] = useLoginMutation();
-
-  console.log(isError);
-
+  const [login] = useLoginMutation();
 
   const {
     register,
@@ -44,17 +42,28 @@ export const SignInForm = () => {
     reset,
     control,
     formState: { errors },
-  } = useForm<Inputs>({ resolver: zodResolver(loginSchema), defaultValues: { email: '', password: '', rememberMe: false } });
+  } = useForm<Inputs>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: '', password: '', rememberMe: false },
+  });
 
   const onSubmit = async (data: Inputs) => {
-    console.log(data);
-    login(data).unwrap().then(() => {
-      reset();
+    try {
+      const result: BaseResponse<{ userId: number; token: string }> = await login(data).unwrap();
+      if (result.resultCode !== 0) {
+        toast.error(result.messages?.[0] || 'Ошибка авторизации');
+        return;
+      }
+
+      toast.success('Вы успешно залогинились');
       router.push('/');
-    })
-
+      reset();
+    } catch (error: any) {
+      const message =
+        error?.data?.messages?.[0] || error?.message || 'Произошла ошибка при авторизации';
+      toast.error(message);
+    }
   };
-
 
   return (
     <div className="flex min-h-screen items-center justify-center background">
@@ -85,7 +94,7 @@ export const SignInForm = () => {
                 defaultValue="free@samuraijs.com"
                 {...register('email')}
               />
-              {errors.email && <span className='text-red-500 text-xs'>{errors.email.message}</span>}
+              {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">{t('passwordLabel')}</Label>
@@ -96,7 +105,7 @@ export const SignInForm = () => {
                 defaultValue="free"
                 {...register('password')}
               />
-              {errors.password && <span className='text-red-500'>{errors.password.message}</span>}
+              {errors.password && <span className="text-red-500">{errors.password.message}</span>}
             </div>
             <div>
               <div className="flex items-center gap-2">

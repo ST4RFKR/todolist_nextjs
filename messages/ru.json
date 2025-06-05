@@ -32,14 +32,22 @@
   },
   "mainPage": {
     "createForm": {
-  "createTodolist": "Создать список дел",
-  "createTask": "Создать задачу"
-},
+      "createTodolist": "Создать список дел",
+      "createTask": "Создать задачу"
+    },
 
     "filterButtons": {
       "all": "Все",
       "active": "Активные",
       "completed": "Выполненные"
-    }
+    },
+    "createDate": "Дата создания : ",
+    "pryority": {
+      "low": "Низкий",
+      "medium": "Средний",
+      "high": "Высокий"
+    },
+    "noTasks": "Нет задач",
+    "fieldRequired": "Поле обязательно для заполнения"
   }
 }
