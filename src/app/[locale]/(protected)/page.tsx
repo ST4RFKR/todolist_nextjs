@@ -36,16 +36,19 @@ export default function HomePage() {
   }, [localPriorities, isClient]);
 
   const transformedTodolists = useMemo(() => {
-    if (!isClient) return todolists.map((t) => ({ ...t, filter: 'all' as const }));
-
-    const savedFilters = JSON.parse(localStorage.getItem('todolistFilters') || '{}');
+    const savedFilters = isClient
+      ? JSON.parse(localStorage.getItem('todolistFilters') || '{}')
+      : {};
+    const savedPriorities = isClient
+      ? JSON.parse(localStorage.getItem('todolistPriorities') || '{}')
+      : {};
 
     return todolists.map((t) => ({
       ...t,
-      priyorite: localPriorities[t.id] ?? t.priyorite ?? 1,
-      filter: savedFilters[t.id] || t.filter || 'all',
+      priyorite: savedPriorities[t.id] ?? t.priyorite ?? 1,
+      filter: savedFilters[t.id] ?? t.filter ?? 'all',
     }));
-  }, [todolists, localPriorities, isClient]);
+  }, [todolists, isClient]);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;

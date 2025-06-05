@@ -21,7 +21,10 @@ export const PriyoriteBadge = ({ todolist }: { todolist: DomainTodolist }) => {
     }),
     [t],
   );
-  const [priority, setPriority] = useState(todolist.priyorite ?? 1);
+  const [priority, setPriority] = useState(() => {
+    const stored = JSON.parse(localStorage.getItem('todolistPriorities') || '{}');
+    return stored[todolist.id] ?? todolist.priyorite ?? 1;
+  });
 
   const onSelectPriority = (newPriority: number) => {
     setPriority(newPriority);
