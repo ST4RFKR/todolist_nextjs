@@ -49,7 +49,11 @@ export const SignInForm = () => {
 
   const onSubmit = async (data: Inputs) => {
     try {
-      const result: BaseResponse<{ userId: number; token: string }> = await login(data).unwrap();
+      const result = (await login(data).unwrap()) as BaseResponse<{
+        userId: number;
+        token: string;
+      }>;
+
       if (result.resultCode !== 0) {
         toast.error(result.messages?.[0] || 'Ошибка авторизации');
         return;
@@ -58,10 +62,8 @@ export const SignInForm = () => {
       toast.success('Вы успешно залогинились');
       router.push('/');
       reset();
-    } catch (error: unknown) {
-      const message =
-        error?.data?.messages?.[0] || error?.message || 'Произошла ошибка при авторизации';
-      toast.error(message);
+    } catch (error) {
+      console.log(error);
     }
   };
 

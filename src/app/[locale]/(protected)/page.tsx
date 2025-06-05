@@ -8,6 +8,7 @@ import { TodolistsContainer } from '@/entities/todolist/ui/TodolistsContainer';
 import { CreateItemForm } from '@/shared/components/create-item-form';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { restrictToFirstScrollableAncestor, restrictToWindowEdges } from '@dnd-kit/modifiers';
+import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -15,6 +16,7 @@ export default function HomePage() {
   const { data: todolists = [], isLoading: isFetching } = useGetTodolistsQuery();
   const [createTodolist, { isLoading: isCreating }] = useCreateTodolistMutation();
   const [reorderTodolist] = useReorderTodolistMutation();
+  const t = useTranslations('mainPage');
 
   const [localPriorities, setLocalPriorities] = useState<{ [key: string]: number }>({});
   const [isClient, setIsClient] = useState(false);
@@ -80,7 +82,11 @@ export default function HomePage() {
       onDragEnd={handleDragEnd}
       modifiers={[restrictToFirstScrollableAncestor, restrictToWindowEdges]}>
       <div className="flex items-center w-[350px] p-2">
-        <CreateItemForm disabled={isCreating} create={createTodolistHandler} />
+        <CreateItemForm
+          disabled={isCreating}
+          placeholder={t('createForm.createTodolist')}
+          create={createTodolistHandler}
+        />
       </div>
       <div className="flex flex-wrap gap-3">
         <TodolistsContainer todolists={transformedTodolists} isLoading={isFetching} />
