@@ -58,7 +58,7 @@ export const SignInForm = () => {
       toast.success('Вы успешно залогинились');
       router.push('/');
       reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       const message =
         error?.data?.messages?.[0] || error?.message || 'Произошла ошибка при авторизации';
       toast.error(message);

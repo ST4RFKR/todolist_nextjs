@@ -7,6 +7,8 @@ import { useTranslations } from 'next-intl';
 import { useCreateTaskMutation } from '../../api/task-api';
 import { DomainTodolist } from '../../lib/types';
 import toast from 'react-hot-toast';
+import { BaseResponse } from '@/shared/types/types';
+import { DomainTask } from '../../api/tasksApi.types';
 
 interface Props {
   todolist: DomainTodolist;
@@ -24,11 +26,12 @@ export const TodolistItem = ({ todolist, dragHandleProps }: Props) => {
     return newDate ? newDate[2] + '.' + newDate[1] + '.' + newDate[0] : '';
   };
   const addTask = async (title: string) => {
-    const result: any = await createTask({
+    const result = await createTask({
       todolistId: todolist.id,
       title,
     }).unwrap();
-    if (result.resultCode !== 0) {
+
+    if (result?.resultCode !== 0) {
       toast.error(result.messages?.[0] || 'Произошла ошибка');
     }
   };

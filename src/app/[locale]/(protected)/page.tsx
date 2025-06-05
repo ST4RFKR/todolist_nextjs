@@ -69,7 +69,7 @@ export default function HomePage() {
     });
   };
   const createTodolistHandler = async (title: string) => {
-    const result: any = await createTodolist(title).unwrap();
+    const result = await createTodolist(title).unwrap();
     if (result.resultCode !== 0) {
       toast.error(result.messages?.[0] || 'Произошла ошибка');
     }
